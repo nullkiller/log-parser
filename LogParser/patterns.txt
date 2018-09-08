@@ -1,2 +1,12 @@
-﻿Day [0-9]+
-    Test
+﻿Player.*starting turn
+	Main loop: decomposing .+ basic goals
+		Main loop: decomposing basic goal
+			Decomposing goal
+				Considering
+	Trying to realize.*value
+	goal decomposition exhausted
+		Hero .* started wandering
+			Looking for wander destination
+			Looking for town destination
+		Trying to realize .* wandering
+		Of all .* destinations, object .* at pos=.* seems nice

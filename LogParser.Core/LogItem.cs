@@ -13,7 +13,7 @@ namespace LogParser.Core
 
         public List<string> Lines { get; set; }
 
-        public string Text => string.Join(Environment.NewLine, Lines);
+        public List<object> Items => Lines.Cast<object>().Concat(Children.Cast<object>()).ToList();
 
         public LogItem(string header)
         {

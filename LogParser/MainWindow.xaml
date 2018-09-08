@@ -6,20 +6,14 @@
         xmlns:local="clr-namespace:LogParser"
         xmlns:core="clr-namespace:LogParser.Core;assembly=LogParser.Core"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="350" Width="525" WindowState="Maximized">
     <Window.Resources>
         <ResourceDictionary>
-            <DataTemplate DataType="{x:Type core:LogItem}">
-                <Expander Header="{Binding Header}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
-                    <StackPanel HorizontalAlignment="Stretch">
-                        <TextBlock Text="{Binding Text}" />
-                        <ListView ItemsSource="{Binding Children}" HorizontalAlignment="Stretch"></ListView>
-                    </StackPanel>
-                </Expander>
-            </DataTemplate>
+            <HierarchicalDataTemplate DataType="{x:Type core:LogItem}" ItemsSource="{Binding Items}">
+                <TextBlock Text="{Binding Header}" />
+            </HierarchicalDataTemplate>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
-        <ListView Name="lstLog" HorizontalContentAlignment="Stretch"></ListView>
-    </Grid>
+
+    <TreeView Name="lstLog" HorizontalContentAlignment="Stretch" VerticalAlignment="Top"></TreeView>
 </Window>

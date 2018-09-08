@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
 using System.Windows;
 using LogParser.Core;
 using Microsoft.Win32;
@@ -16,16 +18,24 @@ namespace LogParser
         public MainWindow()
         {
             InitializeComponent();
-            var dlg = new OpenFileDialog {Multiselect = false};
 
-            if (dlg.ShowDialog() != true)
+            string fileName = Environment.GetCommandLineArgs().Skip(1).FirstOrDefault();
+
+            if (string.IsNullOrEmpty(fileName))
             {
-                Close();
+                var dlg = new OpenFileDialog { Multiselect = false };
+
+                if (dlg.ShowDialog() != true)
+                {
+                    Close();
+                }
+
+                fileName = dlg.FileName;
             }
 
             string log;
 
-            using (FileStream fileStream = new FileStream(dlg.FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            using (FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
             using (StreamReader reader = new StreamReader(fileStream))
             {
                 log = reader.ReadToEnd();
