@@ -15,5 +15,17 @@
         </ResourceDictionary>
     </Window.Resources>
 
-    <TreeView Name="lstLog" HorizontalContentAlignment="Stretch" VerticalAlignment="Top"></TreeView>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Margin="1">
+            <Button x:Name="btnRefresh" Click="btnRefresh_Click" HorizontalAlignment="Left" Foreground="Black" Content="Refresh" Width="70"/>
+            <TextBox x:Name="txtSearch" Width="100" HorizontalAlignment="Right" TextChanged="txtSearch_TextChanged" />
+        </Grid>
+
+        <TreeView Name="lstLog" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top"></TreeView>
+    </Grid>
 </Window>
