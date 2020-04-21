@@ -26,6 +26,11 @@
             <TextBox x:Name="txtSearch" Width="100" HorizontalAlignment="Right" TextChanged="txtSearch_TextChanged" />
         </Grid>
 
-        <TreeView Name="lstLog" Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Top"></TreeView>
+        <TreeView Name="lstLog" 
+                  Grid.Row="1" 
+                  HorizontalContentAlignment="Stretch"
+                  VerticalContentAlignment="Top"
+                  VirtualizingStackPanel.IsVirtualizing="True"
+                  VirtualizingStackPanel.VirtualizationMode="Recycling"></TreeView>
     </Grid>
 </Window>
