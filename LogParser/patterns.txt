@@ -1,12 +1,93 @@
-﻿Player.*starting turn
-	Main loop: decomposing .+ basic goals
-		Main loop: decomposing basic goal
-			Decomposing goal
-				Considering
+Starting client
+Server gives turn to .*
+	Entering void __cdecl CBattleAI::battleStart.*
+		Entering void __cdecl CBattleAI::activeStack.*
+			Build evaluator and targets
+				Battle exchange at .*
+			Select stack action
+				Evaluating normal attack for .*
+					Battle exchange at .*
+				Evaluating waited attack for .*
+					Battle exchange at .*
+			Casting spells sounds like fun
+				I can cast.*
+				Evaluating .*
+					Full evaluation is started due to stack speed affected
+						Evaluating normal attack for .*
+							Battle exchange at .*
+						Evaluating waited attack for .*
+							Battle exchange at .*
+					Total score
+Player.*starting turn
+	Update danger hitmap
+		Engine:
+		Recalculate all paths
+			Recalculate paths pass .*
+			Select next actor
+		updated in
+	Updating paths
+		Recalculate all paths
+			Recalculate paths pass .*
+			Select next actor
+		updated in
+	Start analysing
+		Checking town
+			Checking dwelling level
+			Checking other buildings
+	Begin object clusterization
+		Check object .*
+		Cluster .* count
+		updated in
+	AIPathfinder has been reseted
+		Engine:
+		Recalculate all paths
+			Recalculate paths pass
 	Trying to realize.*value
-	goal decomposition exhausted
-		Hero .* started wandering
-			Looking for wander destination
-			Looking for town destination
-		Trying to realize .* wandering
-		Of all .* destinations, object .* at pos=.* seems nice
+		Executing chain node
+			Entering void __cdecl CBattleAI::battleStart.*
+				Entering void __cdecl CBattleAI::activeStack.*
+					Build evaluator and targets
+						Battle exchange at .*
+					Select stack action
+						Evaluating normal attack for .*
+							Battle exchange at .*
+						Evaluating waited attack for .*
+							Battle exchange at .*
+					Casting spells sounds like fun
+						I can cast.*
+						Evaluating .*
+							Full evaluation is started due to stack speed affected
+								Evaluating normal attack for .*
+									Battle exchange at .*
+								Evaluating waited attack for .*
+									Battle exchange at .*
+							Total score
+	Checking behavior
+		Evaluating defence for .*
+		Decomposing.* level 0
+			calling decompose.*level 0
+				Checking cluster .*
+				Checking ways to .*
+			Decomposition level 0 returned .* goals
+			Decomposing.* level 1
+				calling decompose.*level 1
+				Decomposition level 1 returned .* goals
+				Decomposing.* level 2
+					calling decompose.*level 2
+					Decomposition level 2 returned .* goals
+					Decomposing.* level 3
+						calling decompose.*level 3
+						Decomposition level 3 returned .* goals
+						Decomposing.* level 4
+							calling decompose.*level 4
+							Decomposition level 4 returned .* goals
+							Decomposing.* level 5
+								calling decompose.*level 5
+								Decomposition level 5 returned .* goals
+								Decomposing.* level 6
+									calling decompose.*level 6
+									Decomposition level 6 returned .* goals
+									Decomposing.* level .*
+										calling decompose.*level *
+										Decomposition level .* returned .* goals
+		Evaluating priorities, tasks count

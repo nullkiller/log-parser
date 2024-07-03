@@ -57,9 +57,9 @@ namespace LogParser
                     i => new LogItem(i.Header)
                         {
                             Children = Filter(i.Children, text),
-                            Lines = i.Lines.Where(l => l.Contains(text)).ToList()
+                            
                         })
-                .Where(i => i.Lines.Any() || i.Children.Any() || i.Header.Contains(text))
+                .Where(i => i.LinesCount > 0 || i.Children.Any() || i.Header.Contains(text))
                 .ToList();
         }
 
@@ -70,17 +70,15 @@ namespace LogParser
 
         private void RefreshList()
         {
-            string log;
-
-            using (FileStream fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            using (StreamReader reader = new StreamReader(fileStream))
+            var patterns = File.ReadAllText("patterns.txt");
+            var logFile = new DetachedFile(fileName, long.Parse(txtPosition.Text), 0);//int.Parse(txtLines.Text)
+            using (var stream = logFile.CreateStream())
             {
-                log = reader.ReadToEnd();
+                list = logParser.ParseLog(stream, patternsParser.GetPatterns(patterns));
             }
 
-            var patterns = File.ReadAllText("patterns.txt");
+            GC.Collect();
 
-            list = logParser.ParseLog(log, patternsParser.GetPatterns(patterns));
             lstLog.ItemsSource = Filter(list, txtSearch.Text);
         }
     }

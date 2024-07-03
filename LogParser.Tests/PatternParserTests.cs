@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using LogParser.Core;
@@ -22,7 +23,7 @@ namespace LogParser.Tests
         [TestMethod]
         public void ParseLog_LineMatches_AddsLogItem()
         {
-            var log = "Day 1";
+            var log = CreateStream("Day 1");
             patterns.Add(new Pattern("Day 1"));
 
             var items = this.target.ParseLog(log, patterns);
@@ -33,35 +34,41 @@ namespace LogParser.Tests
         [TestMethod]
         public void ParseLog_LineAfterMatched_AddsToPreviousLogItem()
         {
-            var log = "Day 1\nTest";
+            var log = CreateStream("Day 1", "Test");
             patterns.Add(new Pattern("Day 1"));
 
             var items = this.target.ParseLog(log, patterns);
 
-            items[0].Lines.Should().Contain("Test");
+            items[0].Items.OfType<string>().Should().Contain("Test");
         }
 
         [TestMethod]
         public void ParseLog_LineBeforeAnyMatched_Ignore()
         {
-            var log = "Test\nDay 1";
+            var log = CreateStream("Test", "Day 1");
             patterns.Add(new Pattern("Day 1"));
 
             var items = this.target.ParseLog(log, patterns);
 
-            items.Should().NotContain(i => i.Header == "Test" && i.Lines.Contains("Test"));
+            items.Should().NotContain(i => i.Header == "Test" && i.Items.OfType<string>().Contains("Test"));
         }
 
         [TestMethod]
         public void ParseLog_NestedPattern_AddsNestedLog()
         {
-            var log = "Day 1\nTest";
+            var log = CreateStream("Day 1", "Test");
+
             patterns.Add(new Pattern("Day 1"));
             patterns[0].Children.Add(new Pattern("Test"));
 
             var items = this.target.ParseLog(log, patterns);
 
             items[0].Children[0].Header.Should().Be("Test");
+        }
+
+        private DetachedFileStream CreateStream(params string[] lines)
+        {
+            throw new NotImplementedException();
         }
     }
 

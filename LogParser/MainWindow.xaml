@@ -10,12 +10,12 @@
     <Window.Resources>
         <ResourceDictionary>
             <HierarchicalDataTemplate DataType="{x:Type core:LogItem}" ItemsSource="{Binding Items}">
-                <TextBlock Text="{Binding Header}" />
+                <TextBlock Text="{Binding Header}" Foreground="#ddd" />
             </HierarchicalDataTemplate>
         </ResourceDictionary>
     </Window.Resources>
 
-    <Grid>
+    <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition Height="25" />
             <RowDefinition Height="*"/>
@@ -23,14 +23,24 @@
 
         <Grid Margin="1">
             <Button x:Name="btnRefresh" Click="btnRefresh_Click" HorizontalAlignment="Left" Foreground="Black" Content="Refresh" Width="70"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBox x:Name="txtPosition" Text="0" Width="150" />
+                <TextBox x:Name="txtLines" Text="1000000" Width="150" />
+            </StackPanel>
             <TextBox x:Name="txtSearch" Width="100" HorizontalAlignment="Right" TextChanged="txtSearch_TextChanged" />
         </Grid>
 
         <TreeView Name="lstLog" 
-                  Grid.Row="1" 
+                  Grid.Row="1" Background="Black" Foreground="#ddd"
                   HorizontalContentAlignment="Stretch"
                   VerticalContentAlignment="Top"
                   VirtualizingStackPanel.IsVirtualizing="True"
-                  VirtualizingStackPanel.VirtualizationMode="Recycling"></TreeView>
+                  VirtualizingStackPanel.VirtualizationMode="Recycling">
+            <TreeView.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Foreground" Value="White" />
+                </Style>
+            </TreeView.ItemContainerStyle>
+        </TreeView>
     </Grid>
 </Window>
